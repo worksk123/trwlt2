@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trwallet — Android App Download</title>
+<meta name="description" content="Trwallet is an Android app with simple guided in-app tasks and a clear view of your activity. Free to download.">
+<meta property="og:title" content="Trwallet — Android App Download">
+<meta property="og:description" content="Simple guided tasks and a clear activity view in one Android app.">
+<meta property="og:image" content="logo.jpeg">
+<meta name="theme-color" content="#070816">
+<link rel="icon" href="logo.jpeg">
+<link rel="apple-touch-icon" href="logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1823211965794600');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1823211965794600&ev=PageView&noscript=1" alt=""></noscript>
+<!-- End Meta Pixel Code -->
+
+<style>
+  :root{
+    --bg:#070816;
+    --bg-2:#0C0D22;
+    --card:#111330;
+    --card-2:#16183C;
+    --accent:#3FD3F7;
+    --accent-soft:#9FE6FF;
+    --grad:linear-gradient(120deg,#12C2F0 0%,#3A5BFF 38%,#7A3CFF 68%,#E83CC8 100%);
+    --text-grad:linear-gradient(110deg,#4FDBFF 0%,#7C8CFF 40%,#B07CFF 70%,#FF6FDC 100%);
+    --ink:#F3F4FF;
+    --ink-soft:#AEB2D6;
+    --ink-mute:#7A7FA8;
+    --line:rgba(122,110,255,0.20);
+    --green:#3DDC84;
+    --radius:18px;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top: env(safe-area-inset-top, 0px);}
+  html,body{height:100%;}
+  html{background:var(--bg);}
+  body{
+    margin:0;
+    background:
+      radial-gradient(900px 520px at 85% -10%, rgba(122,60,255,0.20), transparent 60%),
+      radial-gradient(700px 480px at -10% 20%, rgba(18,194,240,0.12), transparent 60%),
+      var(--bg);
+    background-repeat:no-repeat;
+    background-color:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.brand{font-family:'Sora',system-ui,sans-serif;}
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 20px;}
+  .grad-text{
+    background:var(--text-grad); -webkit-background-clip:text; background-clip:text;
+    color:transparent;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; top: env(safe-area-inset-top, 0px);
+    z-index:50;
+    background:rgba(7,8,22,0.84);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:12px 20px;}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.15rem; color:var(--ink); text-decoration:none;}
+  .brand img{width:38px; height:38px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 1px rgba(122,110,255,.45), 0 4px 14px rgba(122,60,255,.4);}
+  .nav-cta{
+    background:var(--grad); color:#fff; border:none;
+    padding:10px 18px; border-radius:999px; font-family:'Sora',sans-serif;
+    font-weight:700; font-size:0.9rem; cursor:pointer;
+    text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    box-shadow:0 6px 18px -6px rgba(122,60,255,.7);
+    transition:transform .15s ease, filter .15s ease;
+  }
+  .nav-cta:hover{transform:translateY(-1px); filter:brightness(1.08);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:52px 0 40px; position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;}
+  .eyebrow-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(63,211,247,0.08); color:var(--accent);
+    padding:7px 14px; border-radius:999px;
+    font-size:0.8rem; font-weight:600; margin-bottom:18px;
+    border:1px solid var(--line);
+  }
+  .live-dot{width:8px; height:8px; border-radius:50%; background:var(--green); animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(61,220,132,.55);}70%{box-shadow:0 0 0 9px rgba(61,220,132,0);}100%{box-shadow:0 0 0 0 rgba(61,220,132,0);}}
+  h1{
+    font-size:clamp(2.1rem, 5.4vw, 3.4rem);
+    font-weight:800; line-height:1.06; letter-spacing:-0.02em;
+    margin:0 0 16px; color:var(--ink);
+  }
+  .hero-sub{font-size:1.06rem; color:var(--ink-soft); max-width:46ch; margin:0 0 22px;}
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+  .hero-ctas-top{flex-direction:column; align-items:flex-start; margin-bottom:22px;}
+  .hero-ctas-top .hero-meta{margin-top:6px;}
+  .btn-primary{
+    position:relative; overflow:hidden;
+    background:var(--grad); color:#fff; text-decoration:none;
+    padding:17px 30px; border-radius:16px; font-family:'Sora',sans-serif;
+    font-weight:800; font-size:1.04rem; display:inline-flex; align-items:center; gap:10px;
+    box-shadow:0 12px 30px -8px rgba(122,60,255,0.65), inset 0 1px 0 rgba(255,255,255,.35);
+    transition:transform .18s ease, box-shadow .18s ease;
+    border:none; cursor:pointer;
+  }
+  .btn-primary::after{
+    content:''; position:absolute; top:0; left:-60%; width:40%; height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+    transform:skewX(-20deg); animation:shine 3.2s ease-in-out infinite;
+  }
+  @keyframes shine{0%,55%{left:-60%;}100%{left:130%;}}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 16px 34px -8px rgba(122,60,255,0.75);}
+  .btn-primary svg{width:20px; height:20px; flex:none;}
+  .hero-meta{font-size:0.84rem; color:var(--ink-mute); margin-top:10px;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin:0;}
+  .chip{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:7px 12px; border-radius:999px; font-size:0.8rem; font-weight:600;
+    background:var(--card); border:1px solid var(--line); color:var(--ink-soft);
+  }
+  .chip svg{width:14px; height:14px; color:var(--accent);}
+
+  .hero-art{position:relative; display:flex; align-items:center; justify-content:center;}
+  .hero-art::before{
+    content:''; position:absolute; width:78%; aspect-ratio:1; border-radius:50%;
+    background:radial-gradient(circle, rgba(122,60,255,.38), rgba(18,194,240,.12) 50%, transparent 68%);
+    filter:blur(10px);
+  }
+  .phone-mock{
+    width:100%; max-width:280px; aspect-ratio:9/18.5;
+    background:linear-gradient(160deg,#1E2046,#08091A);
+    border-radius:40px; padding:11px;
+    box-shadow:0 30px 70px -20px rgba(0,0,0,0.8), 0 0 0 1px rgba(122,110,255,.35), inset 0 0 0 2px rgba(255,255,255,.04);
+    position:relative;
+    animation:floaty 5s ease-in-out infinite;
+  }
+  @keyframes floaty{0%,100%{transform:translateY(0px) rotate(-1.5deg);}50%{transform:translateY(-12px) rotate(1deg);}}
+  .phone-screen{
+    width:100%; height:100%;
+    background:radial-gradient(120% 70% at 50% 0%, #2A1F6B 0%, #0A0B1E 60%);
+    border-radius:30px; display:flex; flex-direction:column; align-items:center;
+    justify-content:flex-start; gap:12px; padding:30px 16px 18px; overflow:hidden;
+  }
+  .phone-icon{width:88px; height:88px; border-radius:50%; object-fit:cover; box-shadow:0 10px 28px rgba(122,60,255,0.5); animation:spinGlow 6s ease-in-out infinite;}
+  @keyframes spinGlow{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+  .ps-title{font-family:'Sora',sans-serif; font-weight:700; font-size:.95rem; color:var(--ink); margin-top:2px; text-align:center;}
+  .phone-coin{
+    display:flex; align-items:center; gap:8px; background:rgba(63,211,247,0.10);
+    border:1px solid rgba(63,211,247,.25);
+    padding:7px 13px; border-radius:999px; color:var(--accent-soft); font-size:0.76rem; font-weight:600;
+  }
+  .phone-coin .dot{width:8px; height:8px; border-radius:50%; background:var(--green);}
+  .ps-list{width:100%; display:flex; flex-direction:column; gap:8px; margin-top:6px;}
+  .ps-row{
+    display:flex; align-items:center; gap:10px; padding:10px;
+    background:rgba(255,255,255,.04); border:1px solid rgba(122,110,255,.16); border-radius:12px;
+  }
+  .ps-ic{width:26px; height:26px; border-radius:8px; background:var(--grad); flex:none;}
+  .ps-lines{flex:1; display:flex; flex-direction:column; gap:5px;}
+  .ps-lines i{display:block; height:6px; border-radius:4px; background:rgba(243,244,255,.22);}
+  .ps-lines i:last-child{width:60%; background:rgba(243,244,255,.12);}
+  .ps-tag{font-size:.62rem; font-weight:700; color:#fff; background:#7A3CFF; padding:3px 7px; border-radius:6px;}
+  .ps-row.done .ps-tag{background:var(--green); color:#062312;}
+  .float-badge{
+    position:absolute; background:rgba(17,19,48,.92); border:1px solid var(--line);
+    border-radius:14px; padding:10px 14px; box-shadow:0 14px 30px -12px rgba(0,0,0,0.7);
+    font-size:0.8rem; font-weight:600; display:flex; align-items:center; gap:8px; color:var(--ink);
+    backdrop-filter:blur(6px); z-index:2;
+  }
+  .float-badge svg{width:16px; height:16px;}
+  .fb1{top:8%; left:-4%;}
+  .fb2{bottom:12%; right:-6%;}
+
+  /* ---------- Sections shared ---------- */
+  section{padding:52px 0;}
+  .section-head{max-width:60ch; margin-bottom:32px;}
+  .kicker{display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;}
+  .section-head h2{font-size:clamp(1.6rem, 3.4vw, 2.2rem); font-weight:800; color:var(--ink); margin:0 0 10px; letter-spacing:-0.01em;}
+  .section-head p{color:var(--ink-soft); font-size:1rem; margin:0;}
+
+  /* ---------- Install & open guide ---------- */
+  .install{
+    background:linear-gradient(160deg,var(--card-2),var(--bg-2));
+    border:1px solid var(--line); border-radius:24px; padding:34px 28px;
+  }
+  .install-steps{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  .i-step{background:rgba(0,0,0,.25); border:1px solid rgba(122,110,255,.16); border-radius:16px; padding:18px 16px; position:relative;}
+  .i-step .num{
+    width:32px; height:32px; border-radius:50%; background:var(--grad); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'Sora',sans-serif; font-weight:800; font-size:.9rem; margin-bottom:12px;
+  }
+  .i-step h3{font-size:.98rem; margin:0 0 6px; color:var(--ink);}
+  .i-step p{font-size:.86rem; color:var(--ink-soft); margin:0;}
+  .i-step.key{border-color:rgba(122,110,255,.55); box-shadow:0 0 0 1px rgba(122,110,255,.22), 0 10px 30px -14px rgba(122,60,255,.65);}
+  .i-step.key .flag{
+    position:absolute; top:-10px; right:12px; background:var(--green); color:#062312;
+    font-size:.66rem; font-weight:800; padding:3px 8px; border-radius:6px; letter-spacing:.04em;
+  }
+  .install-note{
+    margin-top:18px; display:flex; gap:10px; align-items:flex-start;
+    font-size:.86rem; color:var(--ink-soft); background:rgba(63,211,247,.06);
+    border:1px dashed rgba(63,211,247,.32); border-radius:12px; padding:12px 14px;
+  }
+  .install-note svg{width:18px; height:18px; color:var(--accent); flex:none; margin-top:1px;}
+
+  /* ---------- How it works ---------- */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .step-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 22px; transition:transform .2s ease, border-color .2s ease;
+  }
+  .step-card:hover{transform:translateY(-3px); border-color:rgba(122,110,255,.45);}
+  .step-num{
+    width:38px; height:38px; border-radius:11px; background:var(--grad); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'Sora',sans-serif;
+    font-weight:800; font-size:0.95rem; margin-bottom:16px;
+  }
+  .step-card h3{font-size:1.06rem; margin:0 0 8px; color:var(--ink);}
+  .step-card p{color:var(--ink-soft); font-size:0.92rem; margin:0;}
+
+  /* ---------- Features ---------- */
+  .features{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  .feature-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; display:flex; gap:16px; align-items:flex-start;
+  }
+  .feature-icon{
+    width:46px; height:46px; border-radius:13px; background:rgba(63,211,247,.08);
+    border:1px solid rgba(63,211,247,.25);
+    display:flex; align-items:center; justify-content:center; flex:none;
+  }
+  .feature-icon svg{width:22px; height:22px; color:var(--accent);}
+  .feature-card h3{font-size:1rem; margin:0 0 6px; color:var(--ink);}
+  .feature-card p{font-size:0.88rem; color:var(--ink-soft); margin:0;}
+
+  /* ---------- Transparency ---------- */
+  .transparency{
+    background:
+      radial-gradient(600px 300px at 100% 0%, rgba(122,60,255,.22), transparent 60%),
+      #0B0C22;
+    border:1px solid var(--line);
+    color:var(--ink); border-radius:24px; padding:40px 30px;
+  }
+  .t-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:6px;}
+  .t-item{background:rgba(255,255,255,0.03); border:1px solid rgba(122,110,255,0.18); border-radius:14px; padding:20px;}
+  .t-item .n{font-family:'Sora',sans-serif; font-weight:700; color:var(--accent); font-size:0.8rem; letter-spacing:.06em; margin-bottom:8px; display:block;}
+  .t-item p{margin:0; font-size:0.9rem; color:var(--ink-soft);}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line); padding:18px 0;}
+  .faq-q{
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    cursor:pointer; font-family:'Sora',sans-serif; font-weight:600; color:var(--ink);
+    font-size:0.98rem; list-style:none;
+  }
+  .faq-q::-webkit-details-marker{display:none;}
+  .faq-plus{flex:none; width:22px; height:22px; position:relative;}
+  .faq-plus::before,.faq-plus::after{content:''; position:absolute; background:var(--accent); border-radius:2px; transition:transform .2s ease;}
+  .faq-plus::before{width:14px; height:2px; top:10px; left:4px;}
+  .faq-plus::after{width:2px; height:14px; top:4px; left:10px;}
+  details[open] .faq-plus::after{transform:rotate(90deg);}
+  .faq-a{color:var(--ink-soft); font-size:0.92rem; margin-top:10px; max-width:65ch;}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    position:relative; overflow:hidden; text-align:center;
+    background:
+      radial-gradient(500px 260px at 50% 0%, rgba(122,60,255,.38), transparent 70%),
+      linear-gradient(160deg,#15173F,#070816);
+    border:1px solid rgba(122,110,255,.35);
+    border-radius:28px; padding:52px 24px; color:var(--ink);
+  }
+  .final-cta .big-logo{width:92px; height:92px; border-radius:50%; object-fit:cover; margin:0 auto 18px; box-shadow:0 12px 34px rgba(122,60,255,.55);}
+  .final-cta h2{color:var(--ink); font-size:clamp(1.6rem,3.6vw,2.3rem); margin:0 0 12px;}
+  .final-cta p{color:var(--ink-soft); max-width:50ch; margin:0 auto 26px; font-size:1rem;}
+  .final-cta .hero-meta{margin-top:14px;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:34px 0 calc(34px + env(safe-area-inset-bottom,0px)); border-top:1px solid var(--line); margin-top:36px;}
+  .foot-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .foot-links{display:flex; gap:20px; flex-wrap:wrap; font-size:0.85rem; color:var(--ink-soft);}
+  .foot-links a{text-decoration:none;}
+  .foot-links a:hover{color:var(--accent);}
+  .foot-note{font-size:0.8rem; color:var(--ink-mute); max-width:70ch; margin-top:18px; line-height:1.6;}
+
+  /* ---------- Download toast ---------- */
+  #dl-toast{
+    position:fixed; left:50%; bottom:24px; transform:translate(-50%,160%);
+    background:#111330; color:var(--ink); padding:14px 20px; border-radius:14px;
+    border:1px solid rgba(122,110,255,.45);
+    font-family:'Sora',sans-serif; font-weight:600; font-size:0.88rem;
+    box-shadow:0 16px 34px -10px rgba(0,0,0,0.7);
+    transition:transform .35s cubic-bezier(.2,.9,.3,1.2), opacity .25s ease;
+    z-index:100; display:flex; align-items:center; gap:10px; opacity:0;
+    width:max-content; max-width:calc(100vw - 32px);
+    padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  }
+  #dl-toast.show{transform:translate(-50%,0); opacity:1;}
+  #dl-toast svg{width:20px; height:20px; color:var(--green); flex:none;}
+  #dl-toast small{display:block; font-family:'Inter',sans-serif; font-weight:500; color:var(--ink-soft); font-size:.78rem;}
+
+  @media (max-width:860px){
+    .hero{padding-top:30px;}
+    .hero-grid{grid-template-columns:1fr; gap:30px;}
+    .hero-art{order:-1;}
+    .phone-mock{max-width:180px;}
+    .phone-icon{width:64px; height:64px;}
+    .ps-title{font-size:.82rem;}
+    .steps{grid-template-columns:1fr;}
+    .features{grid-template-columns:1fr;}
+    .t-grid{grid-template-columns:1fr;}
+    .install-steps{grid-template-columns:1fr 1fr;}
+    .fb1,.fb2{display:none;}
+    .btn-primary{width:100%; justify-content:center;}
+    .hero-ctas-top{align-items:stretch; width:100%;}
+  }
+  @media (max-width:420px){
+    .install-steps{grid-template-columns:1fr;}
+    .install{padding:26px 18px;}
+    .transparency{padding:30px 20px;}
+    .nav-cta{padding:9px 14px; font-size:.84rem;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .phone-mock,.phone-icon,.live-dot,.btn-primary::after{animation:none;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <a class="brand" href="#top">
+      <img src="logo.jpeg" alt="Trwallet logo">
+      <span>Tr<b class="grad-text">wallet</b></span>
+    </a>
+    <a href="Trwallet.apk" download="Trwallet.apk" class="nav-cta" data-download="apk">
+      Download App
+    </a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow-badge">
+          <span class="live-dot"></span>
+          Free Android App · Latest Version
+        </span>
+        <h1>Simple Tasks.<br><span class="grad-text">All In One App.</span></h1>
+        <p class="hero-sub">
+          Trwallet is an Android app with simple, guided in-app tasks and a clear view of your
+          activity and rewards balance. Install it in about a minute and explore what's inside.
+        </p>
+        <div class="hero-ctas hero-ctas-top" id="download">
+          <a href="Trwallet.apk" download="Trwallet.apk" class="btn-primary" data-download="apk">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+            Download Trwallet APK
+          </a>
+          <p class="hero-meta">Android · ~7.5 MB · After download, tap <strong style="color:var(--accent-soft)">Install → Open</strong></p>
+        </div>
+        <div class="chips">
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Free to Download</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>Lightweight · Fast</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2 3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7l-9-5Z"/></svg>Clear Terms</span>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="float-badge fb1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3DDC84" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+          Task Completed
+        </div>
+        <div class="phone-mock">
+          <div class="phone-screen">
+            <img class="phone-icon" src="logo.jpeg" alt="">
+            <div class="ps-title">Welcome to Trwallet</div>
+            <div class="phone-coin"><span class="dot"></span> Activity Updated</div>
+            <div class="ps-list">
+              <div class="ps-row done"><span class="ps-ic"></span><span class="ps-lines"><i></i><i></i></span><span class="ps-tag">DONE</span></div>
+              <div class="ps-row"><span class="ps-ic"></span><span class="ps-lines"><i></i><i></i></span><span class="ps-tag">START</span></div>
+              <div class="ps-row"><span class="ps-ic"></span><span class="ps-lines"><i></i><i></i></span><span class="ps-tag">START</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="float-badge fb2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3FD3F7" stroke-width="2.2"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>
+          Progress Tracked
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="install" style="padding-top:12px;">
+    <div class="wrap">
+      <div class="install">
+        <div class="section-head" style="margin-bottom:24px;">
+          <span class="kicker">Downloaded? One more step</span>
+          <h2>Install &amp; Open In 4 Quick Taps</h2>
+          <p>The app works only after you install and open it. Follow these steps once.</p>
+        </div>
+        <div class="install-steps">
+          <div class="i-step">
+            <div class="num">1</div>
+            <h3>Tap The Download</h3>
+            <p>Open <strong>Trwallet.apk</strong> from your notification bar or Downloads folder.</p>
+          </div>
+          <div class="i-step">
+            <div class="num">2</div>
+            <h3>Allow Install</h3>
+            <p>If asked, tap <strong>Settings → Allow from this source</strong>, then go back.</p>
+          </div>
+          <div class="i-step">
+            <div class="num">3</div>
+            <h3>Tap Install</h3>
+            <p>Installation takes just a few seconds — the app is only about 7.5 MB.</p>
+          </div>
+          <div class="i-step key">
+            <span class="flag">MOST IMPORTANT</span>
+            <div class="num">4</div>
+            <h3>Tap Open</h3>
+            <p>Open Trwallet, create your account and read the in-app terms before you begin.</p>
+          </div>
+        </div>
+        <div class="install-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+          <span>Android shows a standard prompt for apps downloaded outside the Play Store. Only continue if you are comfortable installing apps from this page.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">How it works</span>
+        <h2>Getting Started Is Simple</h2>
+        <p>Three steps from download to your first task.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Install &amp; Open The App</h3>
+          <p>Download the APK, install it, open it and create your account.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Pick A Task</h3>
+          <p>Browse the tasks available inside the app. Each one shows its steps up front.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Track Your Activity</h3>
+          <p>Completed tasks and any rewards appear in your in-app history, as per the app's terms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Inside the app</span>
+        <h2>Simple, Fast &amp; Clear</h2>
+        <p>Clean screens and quick actions, built for everyday use on your phone.</p>
+      </div>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>
+          </div>
+          <div>
+            <h3>Guided Tasks</h3>
+            <p>Every task comes with clear, step-by-step instructions, so it's easy to follow.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M16 13h.01M2 10h20"/></svg>
+          </div>
+          <div>
+            <h3>Wallet View</h3>
+            <p>See your in-app balance and activity history on one screen, right when you open the app.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <div>
+            <h3>Use It At Your Pace</h3>
+            <p>Open the app whenever you're free. There is no fixed schedule to follow.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+          </div>
+          <div>
+            <h3>Help When You Need It</h3>
+            <p>Reach support from inside the app whenever you have a question.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="transparency">
+    <div class="wrap">
+      <div class="transparency">
+        <div class="section-head">
+          <span class="kicker">Please read before installing</span>
+          <h2>Important Information</h2>
+          <p>We want you to know exactly what to expect from the app.</p>
+        </div>
+        <div class="t-grid">
+          <div class="t-item">
+            <span class="n">REWARDS</span>
+            <p>Rewards depend on completing tasks and can vary. They are not a salary, a job offer, an investment return or guaranteed income.</p>
+          </div>
+          <div class="t-item">
+            <span class="n">TERMS</span>
+            <p>Eligibility, limits and any withdrawal rules are set out in the app's Terms &amp; Conditions. Please read them before you start.</p>
+          </div>
+          <div class="t-item">
+            <span class="n">PERMISSIONS</span>
+            <p>The app asks only for the permissions it needs to run your account. Details are shown inside the app.</p>
+          </div>
+          <div class="t-item">
+            <span class="n">STAY SAFE</span>
+            <p>Never share your OTP, UPI PIN, card details or passwords with anyone, including people claiming to be from the app.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <details class="faq-item" open>
+        <summary class="faq-q">Is the app free to download?<span class="faq-plus"></span></summary>
+        <p class="faq-a">Yes, downloading and installing Trwallet from this page is free.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">I downloaded it — what now?<span class="faq-plus"></span></summary>
+        <p class="faq-a">Open the downloaded file, tap Install, then tap Open. The tasks are visible only after you open the app and create your account.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Is this a guaranteed way to make money?<span class="faq-plus"></span></summary>
+        <p class="faq-a">No. Any rewards depend on the tasks you complete and the app's terms, and they can vary. Trwallet should not be treated as a source of income.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Why isn't it on the Play Store?<span class="faq-plus"></span></summary>
+        <p class="faq-a">Trwallet is distributed directly as an APK from this page. Android shows a standard prompt for any app installed this way.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Is my data safe?<span class="faq-plus"></span></summary>
+        <p class="faq-a">The app collects only the information it needs to operate. See the Privacy Policy for full details.</p>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="final-cta">
+        <img class="big-logo" src="logo.jpeg" alt="Trwallet logo">
+        <h2>Ready To Try <span class="grad-text">Trwallet?</span></h2>
+        <p>Download the app, install it, and explore the tasks available inside.</p>
+        <a href="Trwallet.apk" download="Trwallet.apk" class="btn-primary" data-download="apk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          Download Trwallet APK
+        </a>
+        <p class="hero-meta">Free · Android · ~7.5 MB</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="brand" style="font-size:1rem;">
+        <img src="logo.jpeg" alt="">
+        <span>Tr<b class="grad-text">wallet</b></span>
+      </div>
+      <div class="foot-links">
+        <a href="#faq">FAQ</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+      </div>
+    </div>
+    <p class="foot-note">
+      Trwallet is a task-based app. Rewards depend on task completion, may vary and are not guaranteed income.
+      Please read the Terms &amp; Conditions and Privacy Policy before installing or using the app.
+      This site is not part of the Facebook website or Meta Platforms, Inc., and is not endorsed by Meta in any way.
+      © <span id="year"></span> Trwallet
+    </p>
+  </div>
+</footer>
+
+<div id="dl-toast" role="status" aria-live="polite">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+  <span id="dl-toast-text">Download started<small>Open the file → Install → Open</small></span>
+</div>
+
+<script>
+const LEAD_KEY='trwallet_lead_fired_v1';
+let lastTracked=0;
+const toastEl=document.getElementById('dl-toast');
+const toastText=document.getElementById('dl-toast-text');
+const toastDefault=toastText.innerHTML;
+let toastTimer;
+function toast(html){
+  toastText.innerHTML=html;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toastEl.classList.remove('show'),3200);
+}
+document.querySelectorAll('[data-download="apk"]').forEach(btn=>{
+  btn.addEventListener('click',function(e){
+    if(e.isTrusted===false){e.preventDefault();return}
+    const now=Date.now();
+    if(now-lastTracked<2200){e.preventDefault();toast('Download is already starting…');return}
+    lastTracked=now;
+    if(sessionStorage.getItem(LEAD_KEY)!=='1'){
+      if(typeof window.fbq==='function'){
+        window.fbq('track','Lead',{
+          content_name:'Trwallet APK',
+          content_category:'app_download'
+        });
+      }
+      sessionStorage.setItem(LEAD_KEY,'1');
+    }
+    toast(toastDefault);
+  },{passive:false});
+});
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>
